@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Game
+comment0.text=\r\n\ This\ class\ is\ the\ main\ class\ of\ the\ "Reversi"\ application.\r\n\ "Reversi"\ is\ a\ two-player\ game\ in\ Java\ using\ Swing.\r\n\ \r\n\ To\ play\ this\ game,\ create\ an\ instance\ of\ this\ class.\r\n\ \r\n\ This\ main\ class\ creates\ and\ initialises\ the\ Reversi\ class\r\n\ which\ in\ turn\ creates\ and\ initialises\ the\ board\ and\ the\ game\ starts.\r\n\ It\ also\ manages\ the\ sessions\ and\ game\ flow.\r\n\r\n\ @author\ Emmanuel\ Molefi\r\n\ @version\ 10.05.2018\r\n
+comment1.params=
+comment1.target=Game()
+comment1.text=\r\n\ This\ class\ is\ meant\ to\ be\ instantiated\ from\ within\ itself,\r\n\ so\ allow\ for\ that.\r\n\ \r\n\ Create\ the\ game\ and\ initialise\ its\ attributes.\r\n
+comment2.params=
+comment2.target=void\ running()
+comment2.text=\r\n\ Main\ play\ routine.\ Loops\ until\ end\ of\ play.\r\n
+comment3.params=
+comment3.target=void\ continueSession()
+comment3.text=\r\n\ This\ method\ allows\ the\ players\ to\ play\ many\ games\ is\ one\ session.\r\n
+comment4.params=args
+comment4.target=void\ main(java.lang.String[])
+numComments=5
