@@ -59,7 +59,6 @@ public class Reversi
         winner = "";
         dataFromFile = new ArrayList<>();
         makeFrame();
-        reversiIntroduction();
     }
 
     // **** Begin Swing stuff to build the frame and all its components and menus ****
@@ -133,7 +132,7 @@ public class Reversi
         JMenuItem saveAsItem = new JMenuItem("Save As...");
         saveAsItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, SHORTCUT_MASK));
 
-        //saveAsItem.addActionListener(e -> saveAs());
+        saveAsItem.addActionListener(e -> saveAs());
         gameMenu.add(saveAsItem);
 
         gameMenu.addSeparator();
@@ -246,13 +245,6 @@ public class Reversi
         
         return playerPanel;
     }
-    
-    /**
-     * Show the Introduction dialog.
-     */
-    private void reversiIntroduction() {
-        JOptionPane.showMessageDialog(frame, introduction(), "Introduction to Reversi", JOptionPane.INFORMATION_MESSAGE);
-    }
 
     // **** End Swing stuff to build the frame and all its components and menus ****
     // -----------------------------------------------------------------------------
@@ -277,10 +269,6 @@ public class Reversi
                 "Disks are light on one side and dark on the other.\nThe objective of the game " +
                 "is to have \nthe majority of disks turned to display\nthe player's colour " + 
                 "when the\nlast playable empty square is filled.";
-    }
-    
-    private String introduction() {
-        return "Welcome to the game of Reversi!\nPlease ensure that you enter your names then press the 'Play' button.\nHappy playing!!!";
     }
     
     /**
@@ -386,20 +374,20 @@ public class Reversi
     /**
      * Save As function: save the current game session to a file.
      */
-    // private void saveAs()
-    // {
-        // // Only save a game that was started
-        // if(getPlaying()) {
-            // int returnVal = fileChooser.showSaveDialog(frame);
+    private void saveAs()
+    {
+        // Only save a game that was started
+        if(getPlaying()) {
+            int returnVal = fileChooser.showSaveDialog(frame);
 
-            // if(returnVal != JFileChooser.APPROVE_OPTION) {
-                // return;  // cancelled
-            // }
-            // File selectedFile = fileChooser.getSelectedFile();
+            if(returnVal != JFileChooser.APPROVE_OPTION) {
+                return;  // cancelled
+            }
+            File selectedFile = fileChooser.getSelectedFile();
 
-            // ReversiFileHandler.saveToFile(selectedFile, gameInformation());
-        // }
-    // }
+            ReversiFileHandler.saveToFile(selectedFile, gameInformation());
+        }
+    }
 
     /**
      * Open function: open a file chooser to select a new reversi game file,
@@ -425,7 +413,7 @@ public class Reversi
 
         // Call the method to restore the player information 
         // that was saved to file.
-        //restoreGameInformation();
+        restoreGameInformation();
     }
 
     /**
@@ -512,46 +500,46 @@ public class Reversi
     /**
      * @return A String format of the current game information.
      */
-    // private String gameInformation()
-    // {
-        // String info = getReversiBoard().getCurrentPlayer() + "," + getNameOne() + "," + 
-            // getBlackPlayerScore().getText() + "," + 
-            // getBlackSessionScore().getText() + "," + 
-            // getNameTwo() + "," + getWhitePlayerScore().getText() + "," + 
-            // getWhiteSessionScore().getText() + "," + getReversiBoard().boardToString();
-        // return info;
-    // }
+    private String gameInformation()
+    {
+        String info = getReversiBoard().getCurrentPlayer() + "," + getNameOne() + "," + 
+            getBlackPlayerScore().getText() + "," + 
+            getBlackSessionScore().getText() + "," + 
+            getNameTwo() + "," + getWhitePlayerScore().getText() + "," + 
+            getWhiteSessionScore().getText() + "," + getReversiBoard().boardToString();
+        return info;
+    }
 
     /**
      * Restore a previously saved game application.
      */
-    // private void restoreGameInformation()
-    // {
-        // // Set the current player
-        // getReversiBoard().setCurrentPlayer(dataFromFile.get(0));
+    private void restoreGameInformation()
+    {
+        // Set the current player
+        //getReversiBoard().setCurrentPlayer(dataFromFile.get(0));
 
-        // // Player One details
-        // nameOne.setText(dataFromFile.get(1));
-        // getBlackPlayerScore().setText(dataFromFile.get(2));
-        // getBlackSessionScore().setText(dataFromFile.get(3));
+        // Player One details
+        nameOne.setText(dataFromFile.get(1));
+        getBlackPlayerScore().setText(dataFromFile.get(2));
+        getBlackSessionScore().setText(dataFromFile.get(3));
 
-        // // Player Two details
-        // nameTwo.setText(dataFromFile.get(4));
-        // getWhitePlayerScore().setText(dataFromFile.get(5));
-        // getWhiteSessionScore().setText(dataFromFile.get(6));
+        // Player Two details
+        nameTwo.setText(dataFromFile.get(4));
+        getWhitePlayerScore().setText(dataFromFile.get(5));
+        getWhiteSessionScore().setText(dataFromFile.get(6));
 
-        // int EOF = 7;
-        // int index = 0;
-        // ArrayList<JButton> tempDiscArray = getReversiBoard().getDiscsArray();
-        // while(EOF < dataFromFile.size()) {
-            // tempDiscArray.get(index).setText(dataFromFile.get(EOF));
-            // EOF++;
-            // index++;
-        // }
+        int EOF = 7;
+        int index = 0;
+        ArrayList<JButton> tempDiscArray = getReversiBoard().getDiscsArray();
+        while(EOF < dataFromFile.size()) {
+            tempDiscArray.get(index).setText(dataFromFile.get(EOF));
+            EOF++;
+            index++;
+        }
 
-        // getReversiBoard().displayValidMoves(getReversiBoard().getCurrentPlayer());
-        // playing = true;
-    // }
+        getReversiBoard().displayValidMoves(getReversiBoard().getCurrentPlayer());
+        playing = true;
+    }
 
     /**
      * @return The name of the player using black discs.

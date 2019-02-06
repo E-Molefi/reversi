@@ -1,4 +1,3 @@
-import javax.swing.SwingUtilities;
 
 /**
  * This class is the main class of the "Reversi" application.
@@ -18,27 +17,24 @@ public class Game
     // Fields
     private Reversi reversiGame;
     private boolean gameOver;
-
+    
     /**
-     * This class is meant to be instantiated from within itself,
-     * so allow for that.
-     * 
      * Create the game and initialise its attributes.
      */
-    private Game()
+    public Game()
     {
         reversiGame = new Reversi();
         gameOver = false;
-        running();
+        run();
     }
-
+    
     /**
      * Main play routine. Loops until end of play.
      */
-    private void running()
+    private void run()
     {
         while(!gameOver) {
-
+            
             if(reversiGame.getPlaying()) {
                 if(reversiGame.getNewSession()) {
                     reversiGame.getStatusLabel().setText(reversiGame.getWelcomeMessage());
@@ -57,7 +53,7 @@ public class Game
                 // Update the game statistics
                 reversiGame.gameUpdate();
             }            
-
+            
             if(!reversiGame.getWinner().isEmpty()) {
                 reversiGame.resetWinner();
                 gameOver = !gameOver; // This is for the session to continue //
@@ -65,18 +61,13 @@ public class Game
         }        
         continueSession();
     }
-
+    
     /**
      * This method allows the players to play many games is one session.
      */
     private void continueSession()
     {
         gameOver = false;
-        running();
-    }
-
-    public static void main(String[] args) {
-        // Creating a new game
-        new Game(); // Let the constructor do the job.
+        run();
     }
 }

@@ -9,15 +9,18 @@ import java.util.ArrayList;
  * A model of a playing board for a game of "Reversi".
  *
  * @author Emmanuel Molefi
- * @version 10.05.2018
+ * @version 0.2
  */
 public class Board
 {
-    // Testing BEGIN
+     // Testing BEGIN
     ImageIcon blackDisc = new ImageIcon((new ImageIcon(Board.class.getResource("images/black.png")).getImage()));
     ImageIcon whiteDisc = new ImageIcon((new ImageIcon(Board.class.getResource("images/white.png")).getImage()));
     // Testing END
-
+    
+    // Final fields:
+    // private final String BLACK_PLAYER = "\u25CF";
+    // private final String WHITE_PLAYER = "\u25CB";
     // Final fields:
     //private final String BLACK_PLAYER = "\u25CF";
     private final ImageIcon BLACK_PLAYER = blackDisc;
@@ -42,8 +45,8 @@ public class Board
     private JButton[][] discs;
     private ArrayList<JButton> discsArray;
     // Keep record of the current player with black as default starter.
-    //private String currentPlayer = BLACK_PLAYER;  // Black initially
-    private ImageIcon currentPlayer = BLACK_PLAYER;    
+    // private String currentPlayer = "\u25CF";  // Black initially  
+    private ImageIcon currentPlayer = BLACK_PLAYER;
     private int boardSize;
     private boolean changingBoardSize = false;    
 
@@ -60,6 +63,7 @@ public class Board
     private boolean blackMoves;
     private boolean whiteMoves;
     private boolean skipped;
+    // private String skippedPlayer = "";
     private ImageIcon skippedPlayer = null;
     
     /**
@@ -108,7 +112,21 @@ public class Board
                 boardPanel.add(discs[x][y]);
             }
         }
+        
+        // Set up for the four initial discs.
+        // discs[((getBoardSize()/2) - 1)][((getBoardSize()/2) - 1)].setText("\u25CB"); // White disk
+        // discs[((getBoardSize()/2) - 1)][(getBoardSize()/2)].setText("\u25CF"); // Black disk
+        // discs[(getBoardSize()/2)][((getBoardSize()/2) - 1)].setText("\u25CF"); // Black disk
+        // discs[(getBoardSize()/2)][(getBoardSize()/2)].setText("\u25CB"); // White disk
 
+        // Set up for the four initial discs.
+        // // discs[((getBoardSize()/2) - 1)][((getBoardSize()/2) - 1)].setText("\u25CF"); // Black disk
+        // // discs[((getBoardSize()/2) - 1)][(getBoardSize()/2)].setText("\u25CB"); // White disk
+        // // discs[(getBoardSize()/2)][((getBoardSize()/2) - 1)].setText("\u25CB"); // White disk
+        // // discs[(getBoardSize()/2)][(getBoardSize()/2)].setText("\u25CF"); // Black disk
+                
+        // Disable interactivity with with the board if the play button has not been clicked
+        //boardPanel.setVisible(false);
         // Set up for the four initial discs.
         discs[((getBoardSize()/2) - 1)][((getBoardSize()/2) - 1)].setIcon(whiteDisc); // White disk
         discs[((getBoardSize()/2) - 1)][(getBoardSize()/2)].setIcon(blackDisc); // Black disk
@@ -183,6 +201,11 @@ public class Board
     {
         return illegalMove;
     }
+
+    // public void setIllegalMove(boolean illegalMove)
+    // {
+        // this.illegalMove = illegalMove;
+    // }
 
     /**
      * @return Returns true if there is an attempt in changing the board.
@@ -373,7 +396,7 @@ public class Board
             // If we are within the board.
             if((horizontalPosition+yDirection) > -1 && (horizontalPosition+yDirection) < getBoardSize() && (verticalPosition+xDirection) < getBoardSize() && (verticalPosition+xDirection) > -1 ) {
                 // If we have an enemy next to us, in the direction we are going.
-                if(discs[verticalPosition+xDirection][horizontalPosition+yDirection].getIcon() == enemy) {
+                if(discs[verticalPosition+xDirection][horizontalPosition+yDirection].getIcon() == (enemy)) {
                     // Then the direction has potential.
                     potential = true;
                 }
@@ -417,7 +440,7 @@ public class Board
      */
     public boolean isMoveLegal(ImageIcon player, int verticalPosition, int horizontalPosition)
     {
-        boolean result = false;
+         boolean result = false;
         ImageIcon enemy = null;
         ImageIcon friend = null;
 
@@ -484,7 +507,7 @@ public class Board
     {
         boolean canMove = false;
 
-        if(player == BLACK_PLAYER) {
+        if(player == (BLACK_PLAYER)) {
             if(isMoveLegal(BLACK_PLAYER,x,y)) { // if this statement is false, a move cannot be made
                 canMove = true;
             }
@@ -558,7 +581,7 @@ public class Board
                     scoreBlack++;
                 }
 
-                if(discs[x][y].getIcon() == WHITE_PLAYER) {
+                if(discs[x][y].getIcon() == (WHITE_PLAYER)) {
                     scoreWhite++;
                 }
             }
@@ -572,17 +595,17 @@ public class Board
      * 
      * @return Returns a String representation of the contents of the board.
      */
-    // public ImageIcon boardToString()
-    // {
-        // ImageIcon boardString = null;
+    public String boardToString()
+    {
+        String boardString = "";
         
-        // for(int x = 0; x < (getBoardSize()*getBoardSize()); x++) {
-            // JButton disc = (JButton) getBoardPanel().getComponent(x);
-            // boardString = disc.getIcon();
-        // }
+        for(int x = 0; x < (getBoardSize()*getBoardSize()); x++) {
+            JButton disc = (JButton) getBoardPanel().getComponent(x);
+            boardString += disc.getText() + ",";
+        }
         
-        // return boardString;
-    // }
+        return boardString;
+    }
 
     /**
      * This is a helper method to check if the board is full.
@@ -596,7 +619,7 @@ public class Board
 
         for(int x = 0; x < discs.length; x++) {
             for(int y = 0; y < discs.length; y++) {
-                if(!(discs[x][y].getIcon() == null)) {
+                if(!discs[x][y].getText().equals("")) {
                     count++;
                 }
             }
