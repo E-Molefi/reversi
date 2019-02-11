@@ -12,6 +12,8 @@ at http://www.web-games-online.com/reversi/ .
 
 Reversi requires Java 8 JDK and JRE.
 
+After downloading and unzipping the file you will be able to execute the following instructions in order to run the program.
+
 ```sh
 $ cd reversi-master
 $ javac *.java
