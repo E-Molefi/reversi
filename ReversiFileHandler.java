@@ -63,10 +63,6 @@ public class ReversiFileHandler
         catch(FileNotFoundException e) {
             System.err.println("Unable to open " + selectedFile.toPath());
         }
-        catch(IOException e) {
-            System.err.println("A problem was encountered reading " +
-                               selectedFile.toPath());
-        }
         
         return null;
     }
