@@ -8,7 +8,9 @@ playable empty square is filled.
 You can get a feeling on how the game works by playing online
 at http://www.web-games-online.com/reversi/ .
 
-#### Building for source
+#### Building from source
+
+If the BlueJ IDE is being used please skip this section to the next section for relevant information.
 
 Reversi requires Java 8 JDK and JRE.
 
@@ -19,3 +21,8 @@ $ cd reversi-master
 $ javac *.java
 $ java Main
 ```
+
+
+#### Building from source
+
+All you need to do is double-click on the file named `package` and assuming you have BlueJ added to path the project will be loaded up by BlueJ.
