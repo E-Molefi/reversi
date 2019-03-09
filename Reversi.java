@@ -557,6 +557,11 @@ public class Reversi
         return nameTwo.getText();
     }
 
+    public void setDefaultNames() {
+        nameOne.setText("Alice");
+        nameTwo.setText("Bob");
+    }
+
     /**
      * @return The state of the current session.
      */
@@ -597,6 +602,10 @@ public class Reversi
     public boolean getPlaying()
     {
         return playing;
+    }
+
+    public void setPlaying() {
+        this.playing = true;
     }
 
     /**

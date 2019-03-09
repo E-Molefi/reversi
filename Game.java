@@ -25,7 +25,16 @@ public class Game
     {
         reversiGame = new Reversi();
         gameOver = false;
-        run();
+        if (reversiGame.getPlaying()) {
+            run();
+        } else {
+            // Set default names
+            reversiGame.setDefaultNames();
+            // Set playing to true then run the game
+            reversiGame.setPlaying();
+            run();
+        }
+        
     }
     
     /**
