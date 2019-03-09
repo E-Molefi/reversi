@@ -23,6 +23,6 @@ $ java Main
 ```
 
 
-#### Building from source
+#### Building from source using BlueJ
 
 All you need to do is double-click on the file named `package` and assuming you have BlueJ added to path the project will be loaded up by BlueJ.
