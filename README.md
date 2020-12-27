@@ -1,6 +1,6 @@
 # DEPRECATED
 
-This is no longer supported, please consider using [Tombstone-Reversi](https://github.com/E-Molefi/Tombstone-Reversi) instead.
+#### This is no longer supported, please consider using [Tombstone-Reversi](https://github.com/E-Molefi/Tombstone-Reversi) instead.
 
 Reversi is a two-player game in which the players place identical game pieces called disks on
 a rectangular board. Disks are light on one side and dark on the other. The objective of the
